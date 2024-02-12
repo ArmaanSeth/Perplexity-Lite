@@ -1,0 +1,6 @@
+langchain
+langchainhub
+langgraph
+langchain_google_genai
+tavily-python
+python-dotenv
