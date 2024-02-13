@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perplexity-Lite</title>
+    <link rel="icon" href="./static/icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100&display=swap" rel="stylesheet">
@@ -13,30 +14,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;1,300&family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./static/style.css">
     <script src="./static/script.js"></script>
-    <!-- <script>
-        // Function to remove the border after 2 seconds
-        setTimeout(function() {
-            var div = document.getElementById('typing-demo');
-            div.style.animation = 'none'; // Remove the border
-        }, 2000); // 2000 milliseconds = 2 seconds
-    </script> -->
 </head>
 <body>
-    <div class="wrapper">
-        <div class="typing-demo">
-          Perplexity-Lite
-        </div>
+    <h1>Perplexity-Lite</h1>     
     </div>
-    <div class="box">
-        <div class="search">
-            <form>
-                <input type="text" id="question" placeholder="what do you want to know today?" name="question">
-                <button type="button" onclick="askQuestion()"><i class="fa fa-search"></i></button>
-            </form>
-        </div> 
-        <div id="answer">
-        </div>
-        <a id="url"></a>
-    </div>
+    <div class="search">
+        <form method="get" action="\search" id="form">
+            <input type="text" id="question" placeholder="what do you want to know today?" name="question">
+            <button type="submit" title="btn" id="btn"><i class="fa fa-search"></i></button>
+        </form>
+    </div> 
+    <div class="spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    <div class="url"><a id="url" style="color: aliceblue;"></a></div>
+    <div id="answer"></div>
+    
 </body>
 </html>

@@ -1,6 +1,7 @@
 body{
   background-color: black;
   color: white;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 h1{
@@ -8,10 +9,12 @@ h1{
   font-family: 'Chakra Petch', sans-serif;
   font-size: 100px;
 }
+
 div{
   margin: 0px auto;
   text-align: center;
 }
+
 input{
   width:50%;
   padding: 7px 5px;
@@ -36,39 +39,71 @@ button:hover{
     color: rgb(67, 195, 246);
 }
 
-.wrapper {
-  margin: 7%;
-  place-items: center;
-}
-
 #answer{
-  font-family: 'IBM Plex Mono', monospace;
   text-align: left;
-  margin-top: 50px;
   width: 50%;
 }
-  
-.typing-demo {
-  text-align: center;
-  font-family: 'Chakra Petch', sans-serif;
-  font-size: 100px;
-  width: 12ch;
-  animation: typing 2s steps(22), blink .5s step-end infinite alternate;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid;
-  /* font-family: monospace; */
-  /* font-size: 2em; */
+
+.url{
+  margin-top: 50px;
+  padding: 10px;
+  width: 50%;
+  text-align: left;
 }
-  
-@keyframes typing {
-  from {
-    width: 0
+
+.spinner {
+  display: none;
+  margin-top: 10%;
+  width: 44.8px;
+  height: 44.8px;
+  animation: spinner-y0fdc1 2s infinite ease;
+  transform-style: preserve-3d;
+}
+
+.spinner > div {
+  background-color: rgba(249,249,249,0.2);
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  border: 2.2px solid #f9f9f9;
+}
+
+.spinner div:nth-of-type(1) {
+  transform: translateZ(-22.4px) rotateY(180deg);
+}
+
+.spinner div:nth-of-type(2) {
+  transform: rotateY(-270deg) translateX(50%);
+  transform-origin: top right;
+}
+
+.spinner div:nth-of-type(3) {
+  transform: rotateY(270deg) translateX(-50%);
+  transform-origin: center left;
+}
+
+.spinner div:nth-of-type(4) {
+  transform: rotateX(90deg) translateY(-50%);
+  transform-origin: top center;
+}
+
+.spinner div:nth-of-type(5) {
+  transform: rotateX(-90deg) translateY(50%);
+  transform-origin: bottom center;
+}
+
+.spinner div:nth-of-type(6) {
+  transform: translateZ(22.4px);
+}
+
+@keyframes spinner-y0fdc1 {
+  0% {
+     transform: rotate(45deg) rotateX(-25deg) rotateY(25deg);
   }
-}
-    
-@keyframes blink {
   50% {
-    border-color: transparent
+     transform: rotate(45deg) rotateX(-385deg) rotateY(25deg);
+  }
+  100% {
+     transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
   }
 }

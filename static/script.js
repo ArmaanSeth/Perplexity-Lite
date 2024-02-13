@@ -1,18 +1,27 @@
+window.addEventListener("DOMContentLoaded", () => {
+    document.getElementById('form').addEventListener('submit', function(event){
+        event.preventDefault();
+        askQuestion()
+    });
+});
 function askQuestion() {
     initialize()
     var question = document.getElementById('question').value;
-     fetch('/search?question=' + encodeURIComponent(question))
+    fetch('./search?question=' + encodeURIComponent(question))
         .then(response => response.text())
-        .then(data => {
+        .then(data =>{
+            console.log("TEST 2")
             data=JSON.parse(data)
+            console.log(data)
             aText1=new Array(data['answer'])
             iArrLength1=aText1[0].length
-            typewriter1()
-            aText2=new Array(data['url'])
+            document.getElementsByClassName('spinner')[0].style.display='none'
+            aText2=new Array("URL:"+data['url'])
             iArrLength2=aText2[0].length
+            timer=(iSpeed+27)*iArrLength2
             typewriter2()
-            a=document.getElementById('url').setAttribute('href',data['url'])  
-            // a.innerHTML=data['url']
+            setTimeout(typewriter1, timer)
+            document.getElementById('url').setAttribute('href',data['url'])  
         })
         .catch(error => {
             console.error('Error:', error);
@@ -32,6 +41,9 @@ var iRow1 // initialise current row
 var iRow2
 
 function initialize(){
+    document.getElementById('url').innerHTML=''
+    document.getElementById('answer').innerHTML=''
+    document.getElementsByClassName('spinner')[0].style.display='block'
     iIndex1 = 0;
     iTextPos1 = 0;
     sContents1 = ''
@@ -42,45 +54,33 @@ function initialize(){
     iRow2=0
 }
 function typewriter1(){
- console.log('test1')
- sContents1 =  ' ';
- iRow1 = Math.max(0, iIndex1-iScrollAt);
- var destination1 = document.getElementById("answer");
- 
- while ( iRow1 < iIndex1 ) {
-  sContents1 += aText1[iRow1++] + '<br />';
- }
- destination1.innerHTML = sContents1 + aText1[iIndex1].substring(0, iTextPos1) + "|";
- if ( iTextPos1++ == iArrLength1 ) {
-  iTextPos1 = 0;
-  iIndex1++;
-  if ( iIndex1 != aText1.length ) {
-   iArrLength1 = aText1[iIndex1].length;
-   setTimeout("typewriter1()", 500);
-  }
- } else {
-  setTimeout("typewriter1()", iSpeed);
- }
+    sContents1 =  ' ';
+    var destination1 = document.getElementById("answer");
+    destination1.innerHTML = sContents1 + aText1[iIndex1].substring(0, iTextPos1) + "|";
+    if ( iTextPos1++ == iArrLength1 ) {
+        iTextPos1 = 0;
+        iIndex1++;
+        if ( iIndex1 != aText1.length ) {
+            iArrLength1 = aText1[iIndex1].length;
+            setTimeout("typewriter1()", 500);
+        }
+    } else {
+        setTimeout("typewriter1()", iSpeed);
+    }
 }
 
 function typewriter2(){
-    console.log('test2')
     sContents2 =  ' ';
-    iRow2 = Math.max(0, iIndex2-iScrollAt);
     var destination2 = document.getElementById("url");
-    
-    while ( iRow2 < iIndex2 ) {
-     sContents2 += aText2[iRow2++] + '<br />';
-    }
     destination2.innerHTML = sContents2 + aText2[iIndex2].substring(0, iTextPos2) + "|";
     if ( iTextPos2++ == iArrLength2 ) {
-     iTextPos2 = 0;
-     iIndex2++;
-     if ( iIndex2 != aText2.length ) {
-      iArrLength2 = aText2[iIndex2].length;
-      setTimeout("typewriter2()", 500);
-     }
+        iTextPos2 = 0;
+        iIndex2++;
+        if ( iIndex2 != aText2.length ) {
+            iArrLength2 = aText2[iIndex2].length;
+            setTimeout("typewriter2()", 500);
+        }
     } else {
-     setTimeout("typewriter2()", iSpeed);
+        setTimeout("typewriter2()", iSpeed);
     }
-   }
+}
