@@ -17,7 +17,7 @@ def augment_text(text):
     return re.sub(pattern, r'<b>\1</b>', text)
 
 load_dotenv()
-llm=ChatGoogleGenerativeAI(model='gemini-pro',google_api_key="AIzaSyB3xjgb0DF84EvKsvKafVFdih9jpaj4jGQ",convert_system_message_to_human=True, temperature=0.2)
+llm=ChatGoogleGenerativeAI(model='gemini-pro',convert_system_message_to_human=True, temperature=0.2)
 prompt=hub.pull("hwchase17/structured-chat-agent")
 tools=[TavilySearchResults(max_results=1)]
 agent_runnable=create_structured_chat_agent(llm, tools, prompt)
@@ -50,7 +50,6 @@ workflow.add_conditional_edges(
 )
 workflow.add_edge('tools','agent')
 chain=workflow.compile()
-res=chain.invoke({"input":"Reccomend 5 thriller movies", 'intermediate_steps':[]})
 
 template="""
 Given a question and its answer. Rewrite the answer properly to address the question without straight jumping into the answer
